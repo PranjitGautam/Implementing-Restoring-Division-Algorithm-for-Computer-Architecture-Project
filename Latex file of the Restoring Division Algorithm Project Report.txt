@@ -1,0 +1,553 @@
+\documentclass[a4paper, 12pt, english]{article}
+
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{subfig}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\usepackage{indentfirst}
+\usepackage{verbatim}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{float}
+\usepackage{relsize}
+
+\usepackage{lipsum}% http://ctan.org/pkg/lipsum
+\usepackage{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{xparse}% http://ctan.org/pkg/xparse
+\NewDocumentCommand{\myrule}{O{1pt} O{2pt} O{black}}{%
+  \par\nobreak % don't break a page here
+  \kern\the\prevdepth % don't take into account the depth of the preceding line
+  \kern#2 % space before the rule
+  {\color{#3}\hrule height #1 width\hsize} % the rule
+  \kern#2 % space after the rule
+  \nointerlineskip % no additional space after the rule
+}
+\usepackage[section]{placeins}
+
+\usepackage{booktabs}
+\usepackage{colortbl}%
+   \newcommand{\myrowcolour}{\rowcolor[gray]{0.925}}
+   
+\usepackage[obeyspaces]{url}
+\usepackage{etoolbox}
+\usepackage[colorlinks,linkcolor=black,citecolor=black,urlcolor=blue,bookmarks=false,hypertexnames=true]{hyperref} 
+
+\usepackage{geometry}
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	inner=2.5cm, % Inner margin
+	outer=2.5cm, % Outer margin
+	bindingoffset=.5cm, % Binding offset
+	top=2cm, % Top margin
+	bottom=2cm, % Bottom margin
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+
+%*******************************************************************************%
+%************************************START**************************************%
+%*******************************************************************************%
+\begin{document}
+
+%************************************TITLE PAGE**************************************%
+
+\begin{titlepage}
+\begin{center}
+\textbf{\Large National Institute of Technology Silchar\\NITS}\\[0.5cm] 
+\textbf{Department of Computer Science and Engineering\\July,2020}\\[0.7cm]
+\vspace{20pt}
+\includegraphics[scale = 3.5]{nit.png}\\[1cm]
+
+\par
+\vspace{20pt}
+\textbf{\Large CS-205\\ Computer Architecture and Organization}\\
+\vspace{15pt}
+\myrule[1pt][7pt]
+\textbf{\LARGE Project Topic:}\\
+\vspace{15pt}
+\textbf{\large Simulating and Study of Restoring Division Algorithm for  signed and unsigned integers}\\
+\myrule[1pt][7pt]
+\vspace{20pt}
+\textbf{\large Submitted By:}\\
+\begin{itemize}
+\centering
+    \item Tanveer Ahmed \hspace{3pt} 18-1-5-022 
+    \item Pranjit Gautam \hspace{3pt} 18-1-5-023 
+    \item Manditjyoti Borah\hspace{3pt} 18-1-5-025
+    \item Mayur Raj Bharati\hspace{3pt} 18-1-5-026
+\end{itemize}
+
+\vspace{25pt}
+\textbf {\large Under The Supervision of:}\\[0.2cm]
+\Large {Dr. Malaya Dutta Borah}\\[0.1cm]
+
+\end{center}
+
+\newpage
+\myrule[1pt][7pt]
+\begin{center}
+    \includegraphics[scale = 2.0]{nit.png}\\[1cm]
+\end{center}
+\begin{center}
+   \textbf{COMPUTER SCIENCE AND
+ENGINEERING\\\\
+NATIONAL INSTITUTE OF
+TECHNOLOGY SILCHAR} 
+\end{center}
+\myrule[1pt][7pt]
+\begin{center}
+    \LARGE{\textbf{CERTIFICATE}}
+\end{center}
+
+It is certified that the work contained in this thesis entitled Simulating and Study of Restoring Division Algorithm for  signed and unsigned integers submitted by \textbf{Tanveer Ahmed(18-
+1-5-022), Pranjit Gautam (18-1-5-023), Manditjyoti Borah  (18-1-5-025) ,Mayur Raj Bharati (18-1-5-026)} for the B.Tech. End Semester
+Project for fourth semester. Examination July, 2020 is absolutely based
+on their own work carried out under my supervision.\\ \\ \\\\\\\\
+Place : NIT Silchar\\
+Date: 12/07/2020\\
+\\\\\\\\
+Dr. Malaya Dutta Borah\\
+Computer Science And Engineering\\
+National Institute of Technology Silchar
+\newpage
+\myrule[1pt][7pt]
+\begin{center}
+    \includegraphics[scale = 2.0]{nit.png}\\[1cm]
+\end{center}
+\begin{center}
+   \textbf{COMPUTER SCIENCE AND
+ENGINEERING\\\\
+NATIONAL INSTITUTE OF
+TECHNOLOGY SILCHAR} 
+\end{center}
+\myrule[1pt][7pt]
+\begin{center}
+    \LARGE{\textbf{DECLARATION}}
+\end{center}
+
+Mini Project Title: \textbf{Simulating and Study of Restoring Division Algorithm for  signed and unsigned integers.}Degree for which the Mini Project is submitted: \textbf{Bachelor of Tech-
+nology.}\\\\
+
+We declare that the presented thesis represents largely our own ideas
+and work in our own words. Where others ideas or words have been included, we have adequately cited and listed in the reference materials. The thesis has been prepared without resorting to plagiarism.We have adhered to all principles of academic honesty and integrity.No falsified or fabricated data have been presented in the thesis. We understand that any violation of the above will cause for disciplinary action by the Institute, including revoking the conferred degree, if conferred, and can also evoke penal action from the sources which have not been properly cited or from whom proper permission has not been taken.
+\begin{itemize}
+\centering
+    \item Tanveer Ahmed \hspace{3pt} 18-1-5-022 
+    \item Pranjit Gautam \hspace{3pt} 18-1-5-023
+    \item Manditjyoti Borah\hspace{3pt} 18-1-5-025
+    \item Mayur Raj Bharati\hspace{3pt} 18-1-5-026
+\end{itemize}
+\newpage
+\begin{center}
+    \includegraphics[scale = 1.5]{nit.png}\\[0.5cm]
+\end{center}
+\begin{center}
+   \textbf{COMPUTER SCIENCE AND
+ENGINEERING\\
+NATIONAL INSTITUTE OF
+TECHNOLOGY SILCHAR} 
+\end{center}
+\myrule[1pt][7pt]
+\begin{center}
+    \LARGE{\textbf{ABSTRACT}}
+\end{center}
+\textbf{Computer Architecture} is concerned with balancing the performance, efficiency, cost, and reliability of a computer system. It refers to those attributes of a system that have a direct impact on the logical execution of a program such as the instruction set, I/O mechanisms etc. The study of \textbf{Computer Organization} helps optimize performance-based products. It also helps plan the selection of a processor for a particular project.\\\\
+A basic computer consists of three important components- Processor, Memory and Input/Output Devices. Further the processor consists of the Arithmetic and Logic Unit (ALU) and the Control Unit (CU). The ALU performs various mathematical and logical operations of the operands of the decoded instructions. The ALU makes use of various algorithms to perform various arithmetic as well as logical operations. \\\\
+There are number of binary division algorithm like Digit Recurrence Algorithm restoring, non-restoring and SRT Division (Sweeney, Robertson, and Tocher), Multiplicative Algorithm,
+Approximation Algorithms, CORDIC Algorithm and Continued Product Algorithm. Among them, the \textbf{Restoring Division Algorithm} is of great importance. This algorithm makes the division of signed as well as unsigned integers in a fast and efficient manner using only a few processor registers.\\\\
+This project report details a study of the Restoring Division Algorithm for Signed integers. Our project is solely not only about the study of the algorithm and the background theory required for the study such as Representation of Signed integers and SB element but also implements the working of the algorithm in a simulator and simulates the step by step approach using a python program. We will present the study of various concepts, along with various numerical examples as well as we will design the circuit required for the algorithm and simulate the circuit using a Verilog program.
+
+
+
+
+
+
+
+
+\end{titlepage}
+
+
+
+%************************************TABLE OF CONTENTS**************************************%
+
+ %Sumário
+ 
+ \tableofcontents
+ \thispagestyle{empty}
+ %End Sumário
+ 
+\newpage
+\begin{center}
+    \includegraphics[scale = 1.5]{nit.png}\\[0.5cm]
+\end{center}
+\begin{center}
+   \textbf{COMPUTER SCIENCE AND
+ENGINEERING\\
+NATIONAL INSTITUTE OF
+TECHNOLOGY SILCHAR} 
+\end{center}
+\myrule[1pt][7pt]
+
+\section{Introduction}
+The processor is the main substance of a computer system that executes instructions that make up a computer program. The Arithmetic and Logic Unit (ALU) is an integral part of the processor. \\\\
+The ALU is the mathematical brain of the computer. It is a combinational digital electronic circuit that performs arithmetic and bitwise operations on integer binary numbers. It is a fundamental building block of many types of computing circuits. It performs various arithmetic and logical operations on the operands of the decoded instructions. It uses various adder circuits to do addition, subtraction and other arithmetic operations. \\\\Various algorithms are used to perform different logical as well as arithmetic operations in the ALU. For the division operation, one can use the \textbf{Restoring Division} algorithm as it is simple and is lower in complexity than division by convergence. This algorithm can be used for both signed as well as unsigned integers. This algorithm makes use of three registers, namely Accumulator (A), Register Q to store the dividend and Register M to store the divisor. After the division process is completed, A contains the Remainder and Q contains the Quotient. In this algorithm, if a certain step is unsuccessful, we restore the value in Accumulator. Hence this algorithm is known as Restoring division algorithm. 
+
+\subsection{Restoring Division}
+We assume that both the dividend and divisor are positive and hence the
+quotient and the remainder are positive or zero.\\
+ Figure 1 shows the circuit which implements the division algorithm. In
+each step of the algorithm, the divisor is shifted one position to the right, and the
+quotient is shifted one position to the left. 
+\newpage
+
+ \begin{figure}[H]
+\includegraphics[width=1.\linewidth]{Screenshot (418).png}
+\caption{First Version of the Divider Circuit}
+\label{f:retificadormod}
+\end{figure} 
+
+Figure 3.21 shows the steps of the first version of the division algorithm. Initially, the dividend is loaded into the right half of the $2 n$ -bit $A$ register, and the divisor is loaded into the left half of the $2 n-$ bit $B$ register. The $n$ -bit quotient register\\\\
+$(Q)$ is set to $0,$ and the counter $N$ is set to $n+1 .$ In order to determine whether the divisor is smaller than the partial remainder, the divisor register $(B)$ is subtracted from the remainder register $(A)$. If the result is negative, the next step is to restore the previous value by adding the divisor back to the remainder, generating a 0 in the $Q_{0}$ position of the quotient register. This is the reason why this method is called restoring dinision. If the result is positive, a 1 is generated in the $Q_{0}$ position of the quotient register. In the next step, the divisor is shifted to the right, aligning the divisor with the dividend for the next iteration.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\linewidth]{Screenshot (419).png}
+\caption{ The first version of the restoring division algorithm. }
+\label{f:retificadormod}
+\end{figure} 
+\newpage
+\section{Background Theory}
+
+\subsection{Signed and Unsigned Integers}
+Variables such as integers can be represent in two ways, i.e., signed and unsigned. Signed numbers use sign flag or can be distinguish between negative values and positive values. Whereas unsigned numbers stored only positive numbers but not negative numbers.\\
+
+Number representation techniques like: Binary, Octal, Decimal and Hexadecimal number representation techniques can represent numbers in both signed and unsigned ways. Binary Number System is one the type of Number Representation techniques. It is most popular and used in digital systems. Binary system is used for representing binary quantities which can be represented by any device that has only two operating states or possible conditions. For example, a switch has only two states: open or close.\\
+
+In the Binary System, there are only two symbols or possible digit values, i.e., 0 and 1. Represented by any device that only 2 operating states or possible conditions. Binary numbers are indicated by the addition of either an 0b prefix or an 2 suffix.
+\subsubsection{Representation of Binary Numbers:}
+Binary numbers can be represented in signed and unsigned way. Unsigned binary numbers do not have sign bit, whereas signed binary numbers uses signed bit as well or these can be distinguishable between positive and negative numbers. A signed binary is a specific data type of a signed variable.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{Screenshot (421).png}
+
+\end{figure} 
+\subsubsection{ Unsigned Numbers:}
+Unsigned numbers don’t have any sign, these can contain only magnitude of the number. So, representation of unsigned binary numbers are all positive numbers only. For example, representation of positive decimal numbers are positive by default. We always assume that there is a positive sign symbol in front of every number.
+\newpage
+\subsubsection{Representation of Unsigned Binary Numbers:}
+Since there is no sign bit in this unsigned binary number, so N bit binary number represent its magnitude only. Zero (0) is also unsigned number. This representation has only one zero (0), which is always positive. Every number in unsigned number representation has only one unique binary equivalent form, so this is unambiguous representation technique. The range of unsigned binary number is from 0 to $\left(2^{n}-1\right)$ \\\\
+\textbf{Example-1}: To represent decimal number 92 in unsigned binary number.
+We simply convert it into Binary number, it contains only magnitude of the given number. \\
+$=(92)_{10}$\\
+$=\left(1 \times 2^{6}+0 \times 2^{5}+1 \times 2^{4}+1 \times 2^{3}+1 \times 2^{2}+0 \times 2^{1}+0 \times 2^{0}\right)_{10}$\\
+$=(1011100)_{2}$\\
+It's 7 bit binary magnitude of the decimal number 92 .\\
+\subsubsection{Signed Numbers:}
+Signed numbers contain sign flag. this representation distinguish positive and negative numbers. This technique contains both sign bit and magnitude of a number. For example. in representation of negative decimal numbers, we need to put negative symbol in front of given decimal number.
+\subsubsection{Representation of Signed Binary Numbers:}
+There are three types of representations for signed binary numbers. Because of extra signed bit. binary number zero has two representation. either positive (0) or negative (1). so ambiguous representation. But 2 's complementation representation is unambiguous representation because of there is no double representation of number 0 . These are: Sign-Magnitude form, 1 's complement form, and 2 's complement form which are explained as following below,\\\\
+ Practically one always deals with signed integers. The best way to represent a negative integer is the two’s-complement representation. \\\\
+In two’s-complement, negative numbers are represented by the bit pattern which is one greater than the one’s-complement of the positive number. This representation is considered the best as this representation gives a unique representation of 0.
+\\\\Now whenever we observe that the most significant bit (MSB) of a number is
+0, we can directly say that the number is positive and can get the number simply by converting it to its decimal form. But when we observe that the MSB of a number is 1, we have to understand that the number is negative and is stored in its two’s-complement form.\newpage
+Accordingly we find the two’s-complement of that number again (as two’s-complement of a two’s-complement gives the actual number back) to get the actual number back.\\\\
+There is an easier way to get the two’s-complement of a number as follows:\\
+a.	Starting from the LSB, find the first ‘1’.\\
+b.	Invert all the bits to the left of that ‘1’.\\
+
+Example: If a number is 1001, it means the number is negative and the actual number is the two’s-complement of 1001, i.e.,\\\\
+
+~1001 = 0111 which is -7 in decimal\\\\
+
+\textbf{2.1.5(a) Sign-Magnitude form:}
+For $n$ bit binary number, 1 bit is reserved for sign symbol, If the value of sign bit is 0 . then the given number will be positive. else if the value of sign bit is $1,$ then the given number will be negative. Remsining (n-1) bits represent magnitude of the number. Since magnitude of number zero
+(0) is always $0,$ so there osn be two representation of number zero (0). positive (+0) and negative (-0). which depends on value of sign bit. Hence these representations are ambiguous generally because of two representation of number zero
+(0). Generally sign bit is a most significant bit $(\mathrm{MSB})$ of representation.\\\\
+
+For example. range of 6 bit Sign-Magnitude form binary number is from $\left(2^{5}-1\right)$ to $\left(2^{5}-1\right)$ which is equal from minimum value -31 (i.e., 1 11111) to maximum value +31 (i.e., 011111 ). And zero
+(0) has two representation, -0 (i.e., 100000 ) and +0 (i.e., 0.00000 ).\\\\
+\textbf{2.1.5(b) 1's  complement form:}
+Since, 1 's complement of a number is obtained by inverting each bit of given number. So, we represent positive numbers in binary form and negative numbers in 1 's complement form. There is extra bit for sign representation, If value of sign bit is 0 , then number is positive and you can directly represent it in simple binary form, but if value of sign bit 1 , then number is negative and you have to take 1 "s complement of given binary number. You can get negative number by 1 "s complement of a positive number and positive number by using 1 's complement of a negative number. Therefore, in this representation, zero
+(0) ean have two representation, thats why 1 's complement form is also ambiguous form.
+\\\\
+
+For example, range of 6 bit 1 's complement form binary number is from $\left(2^{5}-1\right)$ to $\left(2^{5}-1\right)$ which is equal from minimum value -31 (i.e. 100000 ) to maximum value +31 (i.e., 011111 ). And zero
+(0) has two representation, -0 (i.e., 111111 ) and +0 (i.e., 000000 ).\\\\
+\textbf{2.1.5(c) 2 's complement form:}
+Since. 2 : s complement of a number is obtained by inverting each bit of given number plus 1 to least significant bit (LSB). So, we represent positive numbers in binary form and negative numbers in 2 's complement form. There is extra bit for sign representation. If value of sign bit is $0 .$ then number is positive and you can directly represent it in simple binary form, but if value of sign bit 1 . then number is negative and you have to take 2 's complement of given binary number. You can get negative number by 2 's complement of a positive number and positive number by directly using simple binary representation. If value of most significant bit (MSB) is $1,$ then take 2 s complement from, else not. Therefore, in this representation, zero
+(0) has only one (unique) representation which is always positive. The range of 2 's complement form is from $\left(2^{(n-1)}\right)$ to $\left(2^{(n-1)}-1\right)$.\\\\
+
+
+For example. range of 6 bit 2 's complement form binary number is from $\left(2^{5}\right)$ to $\left(2^{5}-1\right)$ which is equal from minimum value -32 (i.e., 100000 ) to maximum value +31 (i.e., 011111 ). And zero
+(0) has two representation, -0 (i.e. 111111 ) and +0 (i.e. 000000 )
+\subsection{SB Circuit}\\
+The SB circuit or the adder/subtractor circuit is a circuit that is capable of adding or subtracting numbers. It does adding or subtracting depending on a control signal. When the control signal is 0, it behaves as an adder circuit and when the control signal is 1, it behaves as a subtractor circuit. Given below is a circuit which performs 4-bit addition/subtraction of two 4-bit numbers:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{Screenshot (439).png}
+
+\end{figure} 
+
+As we can see, when the control signal K is 0, the input to the XOR gates becomes 0 and input bits B’s, so the outcome of the XOR gates becomes B’s only and hence it performs addition of the bits. However, if the control signal K is 1, the input to the XOR gates becomes 1 and the input bits B’s, this however inverts the bits B’s thereby providing with a two’s-complement to the adder circuit, hence performing subtraction of the bits.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Screenshot (441).png}
+\caption{Truth Table of XOR Gate. }
+\label{f:retificadormod}
+\end{figure} 
+
+\section{Restoring Division Algorithm:}
+In this algorithm, the dividend is store in the register $\mathrm{Q}$ and the divisor is stored in the register M. Further one more register, Accumulator (A) is also used in this algorithm. The initial contents of A is the signed extension of Q. For example if the number of bits in dividend is 4 and dividend is positive then $A$ will be $(0000)_{2}$ and if dividend is negative, A will be $(1111)_{2}$ . Upon completion of this algorithm, Q will get the quotient and A will get the remainder.\\\\
+A division algorithm provides a quotient and a remainder when we divide two number. They are generally of two type slow algorithm and fast algorithm. Slow division algorithm are restoring, non-restoring, non-performing restoring, SRT algorithm and under fast comes Newton–Raphson and Goldschmidt.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{Screenshot (425).png}
+
+\end{figure} 
+Here, register Q contain quotient and register A contain remainder. Here, n-bit dividend is loaded in Q and divisor is loaded in M. Value of Register is initially kept 0 and this is the register whose value is restored during iteration due to which it is named Restoring.\\\\
+Steps used to carry out the algorithm:\\\\
+1. The number of steps required is equal to the number of bits in the dividend.\\\\
+2. At each step, left shift $A$, Q by one position.\\\\
+3. If sign of $A$ and $M$ is the same, then subtract $M$ from $A$. If however sign of $A$ and $\mathrm{M}$ is different, add $\mathrm{M}$ to $\mathrm{A}$.\\\\
+4. After the operation, if the sign of A remains the same or A becomes $0,$ then the step is said to be successful and quotient bit 1 will be added and restoration is not required.\\
+
+If however, sign of A changes, then the step is said to be unsuccessful and the quotient bit 0 will be added and restoration will be done. since restoration is done when the step is unsuccessful, hence this method is called Restoring Division.\\\\
+5. Repeat the steps 2 to 4 for every bit of the dividend.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Screenshot (423).png}
+
+\end{figure} 
+\newpage
+\section{Examples Demonstrated for the Restoring Division Algorithm}
+\textbf{Example 1:}\\
+Using the first version of the restoring division algorithm, we demonstrate the algorithm by dividing the 4-bit numbers $X=13$ and $Y=5\left(1101_{2} \div 0101_{2}\right)$\\\\
+\textbf{Implementation:} Table 1 shows the contents of the registers in each step of the operation,
+finally obtaining a quotient of 2 and a remainder of 3. \\\\
+\begin{center}
+    Table 1 Division example using the first version of the algorithm.
+\end{center}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Screenshot (427).png}
+
+\end{figure} 
+Shifting the partial remainder to the left instead of shifting the divisor to the
+right produces the same alignment and simplifies the hardware necessary for the ALU
+and the divisor register. Both the divisor register and the ALU could have the size
+reduced to half ($n$ bits instead of $2n$ bits).\\\\
+ The second improvement comes from the fact that the first step of the algorithm cannot generate a digit of 1 in the quotient, because, in this case, the quotient
+would be too large for its register. By switching the order of the operations to shift
+and then to subtract, one iteration of the algorithm can be removed.\\\\
+ Another observation is that the size of the A register could be reduced to
+half, and the A and Q registers could be combined, shifting the bits of the quotient
+into the A register instead of shifting in zeros as in the preceding algorithm. The A
+and Q registers are shifted left together. Figure 3 shows the final version of the
+restoring division algorithm.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Screenshot (429).png}
+\caption{ Final version of the restoring division algorithm. }
+\label{f:retificadormod}
+\end{figure} 
+The final version of the restoring divider circuit is shown in Figure 4
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Screenshot (430).png}
+\caption{Final version of the restoring divider circuit.}
+\label{f:retificadormod}
+\end{figure} 
+\textbf{Example 2:}\\
+Using the final version of the algorithm, we divide X = 13 by Y = 5\\\\
+Table 2 shows the contents of the registers in each step of the operation.
+The remainder is formed in the A register, and the quotient in the Q register. 
+\begin{center}
+    Table 2. Division example using the final version of the restoring division algorithm.
+\end{center}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Screenshot (432).png}
+
+\end{figure} 
+\textbf{Example 3:}\\
+We try to implement the Restoring Division Algorithm on (-7)/(-4).\\
+\begin{center}
+    7 = 0111		4 = 0100\\
+   -7 = 1001	   -4 = 1100
+
+\end{center}
+Here dividend is -7 which is negative. Hence initially value of A will be $(1111)_{2}$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Screenshot (434).png}
+
+\end{figure} 
+Hence, remainder is given by A as 1 and quotient is given by Q as 2 which is true because:\\
+\begin{center}
+    -4 x 2 +1 = -7
+
+\end{center}
+\section{Circuit Diagram}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Screenshot (444).png}
+
+\end{figure} 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Screenshot (445).png}
+
+\end{figure} 
+The circuit diagram is verified and simulated using a Verilog program which is attached at the Appendix and the results are simulated in Xilinx PlanAhead 14.7 of which is shown below:
+\section{Appendix}
+\textbf{Verilog Program Designed for Simulating the Restoring Division Algorithm in ISE Project Navigator}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Screenshot (448).png}
+
+\end{figure} 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Screenshot (449).png}
+
+\end{figure} 
+\textbf{The input given as dividend +/- 7 and divisor +/- 3}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.\linewidth]{Screenshot (451).png}
+
+\end{figure} \begin{figure}[H]
+\centering
+\includegraphics[width=1.\linewidth]{Screenshot (453).png}
+
+\end{figure} 
+\textbf{Output : Simulated Output obtained in ISim}
+ \begin{figure}[H]
+\centering
+\includegraphics[width=1.2\linewidth]{Screenshot (455).png}
+
+\end{figure} 
+\newpage
+\section{Restoring Division Algorithm Implementation}
+\textbf{1.Restoring Division Algorithm Implemented for Signed Integers}
+    \\
+\textbf{Implemented Restoring Division Algorithm Flow Chart}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{Screenshot (473).png}
+
+\end{figure}
+\newpage
+\textbf{Python program developed for Restoring Division Algorithm on Signed Integers}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Screenshot (492).png}
+
+\end{figure} 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Screenshot (493).png}
+
+\end{figure} 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Screenshot (494).png}
+
+\end{figure} 
+
+\textbf{Output Obtained}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{Screenshot (496).png}
+
+\end{figure} 
+
+
+
+
+
+
+
+
+
+\newpage
+\textbf{Restoring Division Algorithm Implementation on Unsigned Integers using the flow chart}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.2\linewidth]{Screenshot (457).png}
+
+\end{figure}
+\newpage
+\textbf{Python Program Designed for Implementation of Restoring Division Algorithm on Unsigned Integers}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.\linewidth]{11.png}
+
+\end{figure} 
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.\linewidth]{12.png}
+
+\end{figure} \begin{figure}[H]
+\centering
+\includegraphics[width=1.\linewidth]{13.png}
+
+\end{figure} \begin{figure}[H]
+\centering
+\includegraphics[width=1.\linewidth]{14.png}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.\linewidth]{15.png}
+
+\end{figure} \begin{figure}[H]
+\centering
+\includegraphics[width=1.\linewidth]{16.png}
+
+\end{figure} 
+\end{figure} 
+\newpage
+\textbf{Output Generated}\begin{figure}[H]
+\centering
+\includegraphics[width=1.\linewidth]{17.png}
+
+\end{figure} 
+\newpage
+\section{References:}
+
+1.	Integer Representation and Division Algorithms–Bharat Accharya Lecture Notes\\\\
+
+2.	Computer System Architecture – Morris M. Mano\\\\
+
+3.	VHDL Implementation of Restoring Division Algorithm – Sukhmeet Kaur, Suman, Manpreet Singh Manna, Rajeev Agarwal.\\\\
+
+4.	Division Algorithms – Wikipedia\\\\
+
+5.	Restoring Division Algorithm – GeeksforGeeks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
